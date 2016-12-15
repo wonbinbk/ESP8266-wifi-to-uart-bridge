@@ -1,6 +1,8 @@
 -- file : init.lua
 app = require("application")  
-config = require("config")  
 setup = require("setup")
-
-setup.start()  
+function startup_delay_5s()
+    print("Delay 5s...")    
+    setup.start()
+end
+tmr.alarm(0,5000,0,startup_delay_5s)

@@ -2,29 +2,39 @@
 local module = {}  
 
 local function listening(port_num)
-    myServer = net.createServer(net.TCP,30)
-    myServer:listen(port_num, function(c)
-        c:on("receive", function(c,pl)
-            for word in string.gmatch(pl, "%S+") do
-            	if string.find(word,"/?M")~=nil then
-            		print(string.sub(word,3,-1))
-            		return
-            	end
+    mySrv = net.createServer(net.UDP)
+    mySrv:listen(port_num)
+    mySrv:on("receive", 
+    	function(c,pl)
+        --[[
+            When receive UDP packet "@?@", send ack "#okay#
+            When receive vector command, send that to uart
+        --]]
+    		if (pl=="@?@") then 
+                mySrv:send("#okay#")
+            else 
+                print(pl)
             end
-            end)
-        end)
+    	end
+    	)
 end
 
-uart.on("data", 4,
-	function(data)
-		print("receive from uart:", data)
-    		if data=="quit" then
-      		uart.on("data") -- unregister callback function
-    		end
-	end, 0)
 
 function module.start()  
-  listening(config.Port)
+    print("listening on port " .. setup.port)
+    listening(setup.port)
 end
-
+--[[
+    *** Need revised ****
+    Receive info from MCU
+    check formatting then
+    send it to phone.
+--]]
+uart.on("data",25,
+    function(data)
+        if string.find(data,
+        "@%d%d%d,%d%d%d,%d%d%d@%d%d%d,%d%d%d,%d%d%d@") ~= nil 
+        then print (data)
+        end
+    end,0)
 return module
