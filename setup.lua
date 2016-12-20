@@ -26,7 +26,6 @@ local function wifi_wait_ip()
             else 
                 print("Station IP: "..wifi.sta.getip())
                 tmr.stop(1)       
-                app.start()
             end
         end)
 end
@@ -35,6 +34,7 @@ function module.start()
   print("Configuring Wifi ...")
   wifi.setmode(wifi.STATIONAP)
   wifi_wait_ip()
+  app.start()	
 end
 
 return module  
