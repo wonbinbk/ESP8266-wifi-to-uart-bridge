@@ -17,16 +17,6 @@ local function wifi_wait_ip()
     wifi.ap.config(ap_cfg)
     print("Access Point SSID: "..ap_cfg.ssid)
     print("Access Point Pass: "..ap_cfg.pwd)
-    print("Connecting to Wireless Network: "..station_cfg.ssid.."...")
-    print("Wait for IP...")
-    wifi.sta.config(station_cfg)
-    tmr.alarm(1, 5000, 1, 
-        function()
-            if wifi.sta.getip() ~= nil then 
-                print("Station IP: "..wifi.sta.getip())
-                tmr.stop(1)       
-            end
-        end)
 end
 
 function module.start()  
