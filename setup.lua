@@ -6,8 +6,8 @@ ap_cfg.ssid = "ESP8266"
 ap_cfg.pwd = "12345678"
 
 station_cfg = {}
-station_cfg.ssid = "suki"	--Name of wifi access point.
-station_cfg.pwd = "5u2uk1sh0gun"	--Password of wifi AP. 
+station_cfg.ssid = ""	--Name of wifi access point.
+station_cfg.pwd = ""	--Password of wifi AP. 
 
 module.port = "1999"     --socket UDP.
 
