@@ -6,8 +6,8 @@ ap_cfg.ssid = "ESP8266"
 ap_cfg.pwd = "12345678"
 
 station_cfg = {}
-station_cfg.ssid = "SSID"	--Name of wifi access point.
-station_cfg.pwd = "PASSWORD"	--Password of wifi AP. 
+station_cfg.ssid = "suki"	--Name of wifi access point.
+station_cfg.pwd = "5u2uk1sh0gun"	--Password of wifi AP. 
 
 module.port = "1999"     --socket UDP.
 
@@ -18,12 +18,11 @@ local function wifi_wait_ip()
     print("Access Point SSID: "..ap_cfg.ssid)
     print("Access Point Pass: "..ap_cfg.pwd)
     print("Connecting to Wireless Network: "..station_cfg.ssid.."...")
+    print("Wait for IP...")
     wifi.sta.config(station_cfg)
-    tmr.alarm(1, 1000, 1, 
+    tmr.alarm(1, 5000, 1, 
         function()
-            if wifi.sta.getip() == nil then 
-                print("Wait for IP...")
-            else 
+            if wifi.sta.getip() ~= nil then 
                 print("Station IP: "..wifi.sta.getip())
                 tmr.stop(1)       
             end
