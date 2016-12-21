@@ -3,9 +3,9 @@
 This is a simple Wifi to UART Bridge using ESP8266 running NodeMCU.
 ### Usage
 On first boot, ESP will create an access point with:
-* SSID: **ESP8266**
-* Password: **12345678**
-* ESP8266 IP: **192.168.4.1**
+* SSID: **ESP8266**  
+* Password: **12345678**  
+* ESP8266 IP: **192.168.4.1**  
 
 1. Connect your phone or laptop to that network.
 2. Connect UART tranceiver to ESP8266 serial port UART0.
@@ -21,8 +21,8 @@ Your phone or laptop communicate with ESP8266 over UDP protocols. ESP8266 is lis
   * Phone send:  **_@con@_** to ask ESP to start connecting to wireless network.
 * Tell ESP phone's IP address (ex: 192.168.1.5):
   * Phone send:  **_@IP@192.168.1.5_**.
-* Any others UDP message that is not recognized as command will be understand as normal message and will be transmit untouched to UART0.
+* Any others UDP message that is not recognized as command will be understand as normal message and will be transmitted untouched to UART0.
 * UART0 to wifi:
-  * Each UART message need to end with **_#_** and will be send to phone via UDP port 1999.
+  * Each UART message need to end with **_#_** and will be sent to phone via UDP port 1999.
 
-> You will no longer be able to use normal NodeMCU lua command via UART0. Unless you re-flash NodeMCU firmware.
+> You will no longer be able to use normal NodeMCU lua command via UART0 unless you re-flash NodeMCU firmware.
